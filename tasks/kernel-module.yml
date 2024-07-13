@@ -1,0 +1,14 @@
+- name: Load pppoe module
+  modprobe:
+    name: pppoe
+    state: present
+
+- name: Ensure pppoe module is loaded on boot
+  lineinfile:
+    path: /etc/modules-load.d/modules.conf
+    regexp: '^pppoe'
+    line: 'pppoe'
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'

@@ -1,0 +1,13 @@
+- name: generate config for provider {{ item.key }}
+  template: src=etc/ppp/peers/pppoe.j2 dest=/etc/ppp/peers/{{ item.key }}
+  register: pppoe_conf
+  tags:
+    - interface-config
+
+- name: enable systemd service
+  systemd: name=ppp@{{ item.key }} enabled=true
+
+- name: restart ppp@{{ item.key }}
+  systemd: name=ppp@{{ item.key }} state=restarted
+  when: pppoe_conf.changed
+

@@ -1,0 +1,4 @@
+- name: install rp-pppoe on Archlinux
+  pacman:
+      name: rp-pppoe
+      state: present

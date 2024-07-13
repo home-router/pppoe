@@ -1,0 +1,11 @@
+#!/bin/sh
+
+{% if not pppoe_update_resolvconf %}
+exit 0
+{% endif %}
+
+if [ -x /usr/bin/resolvconf ]; then
+  /usr/bin/resolvconf -fd ${IFNAME}
+else
+  [ -e /etc/resolv.conf.backup.${IFNAME} ] && mv /etc/resolv.conf.backup.${IFNAME} /etc/resolv.conf
+fi

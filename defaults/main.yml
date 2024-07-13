@@ -1,0 +1,13 @@
+# If dnsmasq_as_system_resolver is true, we should avoid pppoe modifying /etc/resolv.conf.
+# The recommended config in that case is:
+#   dnsmasq_resolv_file: /etc/ppp/resolv.conf
+#   pppoe_update_resolvconf: false
+# This will disable 00-dns.sh script modifying DNS config.
+pppoe_update_resolvconf: true
+
+pppoe_provider:
+  provider1:
+    wan_interface: wan0
+    pppoe_interface: pppoe0
+    user: username
+    password: a_password

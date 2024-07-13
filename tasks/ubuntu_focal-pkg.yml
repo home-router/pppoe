@@ -1,0 +1,4 @@
+- name: install pppoe on Ubuntu
+  apt:
+      name: pppoe
+      state: present
